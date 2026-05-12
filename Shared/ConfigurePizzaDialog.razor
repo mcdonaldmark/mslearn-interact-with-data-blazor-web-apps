@@ -13,15 +13,15 @@
                 <input type="range" min="@Pizza.MinimumSize" max="@Pizza.MaximumSize" step="1" @bind="Pizza.Size"
                        @bind:event="oninput" />
                 <span class="size-label">
-                    @(Pizza.Size)" (£@(Pizza.GetFormattedTotalPrice()))
+                    @Pizza.GetTotalPrice().ToString("C")
                 </span>
             </div>
         </form>
 
         <div class="dialog-buttons">
             <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancel</button>
-            <span class="mr-center">
-                Price: <span class="price">@(Pizza.GetFormattedTotalPrice())</span>
+            <span class="price">
+                @Pizza.GetTotalPrice().ToString("C")
             </span>
             <button class="btn btn-success ml-auto" @onclick="OnConfirm">Order ></button>
         </div>

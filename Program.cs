@@ -1,18 +1,34 @@
 using BlazingPizza.Data;
 using BlazingPizza.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var culture = new CultureInfo("en-US");
+
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.GetCultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddControllers(); // ADD THIS
+builder.Services.AddControllers();
 
 builder.Services.AddHttpClient();
 builder.Services.AddSqlite<PizzaStoreContext>("Data Source=pizza.db");
 builder.Services.AddScoped<OrderState>();
 
 var app = builder.Build();
+
+var supportedCultures = new[] { new CultureInfo("en-US") };
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en-US"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
 
 if (!app.Environment.IsDevelopment())
 {

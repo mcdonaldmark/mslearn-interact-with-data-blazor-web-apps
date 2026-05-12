@@ -16,7 +16,7 @@
                     <strong>
                         @(pizza.Size)"
                         @pizza.Special.Name
-                        (£@pizza.GetFormattedTotalPrice())
+                        (@pizza.GetTotalPrice().ToString("C"))
                     </strong>
                 </p>
             }
@@ -24,7 +24,7 @@
             <p>
                 <strong>
                     Total price:
-                    £@Order.GetFormattedTotalPrice()
+                    @Order.GetTotalPrice().ToString("C")
                 </strong>
             </p>
         </div>

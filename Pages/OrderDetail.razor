@@ -40,7 +40,7 @@
                             <strong>
                                 @(pizza.Size)"
                                 @pizza.Special.Name
-                                (£@pizza.GetFormattedTotalPrice())
+                                (@pizza.GetTotalPrice().ToString("C"))
                             </strong>
                         </p>
                     }

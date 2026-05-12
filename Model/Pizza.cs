@@ -22,21 +22,17 @@ namespace BlazingPizza
 
         public int Size { get; set; }
 
-        public List<PizzaTopping> Toppings { get; set; }
+        public List<PizzaTopping> Toppings { get; set; } = new();
 
         public decimal GetBasePrice()
         {
-            return ((decimal)Size / (decimal)DefaultSize) * Special.BasePrice;
+            return ((decimal)Size / DefaultSize) * Special.BasePrice;
         }
 
+        // ✅ KEEP: clean numeric logic only
         public decimal GetTotalPrice()
         {
             return GetBasePrice();
-        }
-
-        public string GetFormattedTotalPrice()
-        {
-            return GetTotalPrice().ToString("0.00");
         }
     }
 }
